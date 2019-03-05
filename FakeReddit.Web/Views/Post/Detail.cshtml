@@ -1,0 +1,41 @@
+﻿@model FakeReddit.Web.ViewModels.PostVMs.PostDetailVM
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+    <h5>@Html.DisplayNameFor(model => model.Post.Subject)</h5>
+    <h4>@Html.DisplayFor(model => model.Post.Subject)</h4>
+    <h5>@Html.DisplayNameFor(model => model.Post.Content)</h5>
+    <p>
+        @Html.DisplayFor(model => model.Post.Content)
+    </p>
+    <h5>@Html.DisplayNameFor(model => model.Post.Comments)</h5>
+    <table class="table">
+        <tr>
+            <th>User</th>
+            <th>Comment</th>
+        </tr>
+        @foreach (var item in Model.Post.Comments)
+        {
+            <tr>
+                <td>@item.UserId</td>
+                <td>@item.CommentContent</td>
+            </tr>
+        }
+    </table>
+</div>
