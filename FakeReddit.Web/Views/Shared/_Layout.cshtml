@@ -24,12 +24,19 @@
                     @if ((string)Session["token"] == "admin_token")
                     {
                         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "User" ? "active" : "")">@Html.ActionLink("Users", "Index", "User")</li>
+                        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Post" ? "active" : "")">@Html.ActionLink("Posts", "Index", "Post")</li>
+
                     }
-                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Post" ? "active" : "")">@Html.ActionLink("Posts", "Index", "Post")</li>
+                    @if ((string)Session["token"] == "user_token")
+                    {
+                        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Post" ? "active" : "")">@Html.ActionLink("Posts", "Index", "Post")</li>
+                        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "User" ? "active" : "")">@Html.ActionLink("Account", "Detail", new { controller = "User", id = (int)Session["user_id"] })</li>
+
+                    }
 
                     @if ((string)Session["token"] != null)
                     {
-                        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "User" ? "active" : "")">
+                        <li>
                             @Html.ActionLink("Logout", "Logout", "User")
                         </li>
                     }

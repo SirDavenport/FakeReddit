@@ -86,12 +86,14 @@ namespace FakeReddit.Web.Controllers
                 if (user.Password == password && user.Role == "ADMIN")
                 {
                     Session["token"] = "admin_token";
+                    Session["user_id"] = user.Id;
                     Debug.WriteLine(Session["token"]);
                     return RedirectToAction("Index", "User");
                 }
                 else if (user.Password == password && user.Role == "USER")
                 {
                     Session["token"] = "user_token";
+                    Session["user_id"] = user.Id;
                     return RedirectToAction("Index", "Post");
                 }
                 else
